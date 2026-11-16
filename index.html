@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rozgar Pakistan | Daily Jobs Across Pakistan</title>
+  <meta name="description" content="Find the latest daily government and private jobs from every corner of Pakistan - Punjab, Sindh, KPK, Balochistan, Islamabad, AJK, and Gilgit-Baltistan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <div class="container ticker-container">
+      <span class="ticker-badge">Live Updates</span>
+      <p class="ticker-text" id="liveTickerText">Daily job updates from federal, provincial, and private sectors across Pakistan.</p>
+      <span class="ticker-date" id="currentDate"></span>
+    </div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="index.html" class="logo">
+        <span class="logo-symbol">🇵🇰</span>
+        <div class="logo-text">
+          <span class="brand-title">Rozgar<span>PK</span></span>
+          <span class="brand-subtitle">Pakistan Job Network</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#jobs-section" class="nav-link active">All Jobs</a>
+        <a href="#provinces" class="nav-link">Regions</a>
+        <a href="#categories" class="nav-link">Sectors</a>
+        <a href="#news-section" class="nav-link">News</a>
+        <button class="btn btn-outline-sm" id="openPostJobModalBtn">+ Post Job</button>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <h1 class="hero-title">Jobs from Every Corner of Pakistan</h1>
+      <p class="hero-desc">
+        Real-time employment updates across Punjab, Sindh, Khyber Pakhtunkhwa, Balochistan, Islamabad Capital Territory, Gilgit-Baltistan, and Azad Jammu & Kashmir.
+      </p>
+
+      <!-- Search & Quick Filter Bar -->
+      <div class="search-box-card">
+        <div class="search-grid">
+          <div class="input-group">
+            <span class="input-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Job title, department, or company (e.g. FBR, WAPDA, Developer)..." autocomplete="off">
+          </div>
+
+          <div class="input-group">
+            <span class="input-icon">📍</span>
+            <select id="locationFilter">
+              <option value="all">All Pakistan</option>
+              <optgroup label="Federal & Major Hubs">
+                <option value="Islamabad">Islamabad</option>
+                <option value="Karachi">Karachi</option>
+                <option value="Lahore">Lahore</option>
+                <option value="Rawalpindi">Rawalpindi</option>
+                <option value="Peshawar">Peshawar</option>
+                <option value="Quetta">Quetta</option>
+              </optgroup>
+              <optgroup label="Provinces / Territories">
+                <option value="Punjab">Punjab</option>
+                <option value="Sindh">Sindh</option>
+                <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa (KPK)</option>
+                <option value="Balochistan">Balochistan</option>
+                <option value="Azad Kashmir">Azad Kashmir (AJK)</option>
+                <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
+              </optgroup>
+              <optgroup label="Other Key Cities">
+                <option value="Faisalabad">Faisalabad</option>
+                <option value="Multan">Multan</option>
+                <option value="Sialkot">Sialkot</option>
+                <option value="Gujranwala">Gujranwala</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Sukkur">Sukkur</option>
+                <option value="Abbottabad">Abbottabad</option>
+                <option value="Mardan">Mardan</option>
+                <option value="Gwadar">Gwadar</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <span class="input-icon">🏢</span>
+            <select id="sectorFilter">
+              <option value="all">All Sectors</option>
+              <option value="Government">Government / Public</option>
+              <option value="Private">Private Sector</option>
+              <option value="Banking & Finance">Banking & Finance</option>
+              <option value="IT & Software">IT & Software</option>
+              <option value="Education / Academic">Education / Teaching</option>
+              <option value="Healthcare">Healthcare & Medical</option>
+              <option value="Engineering">Engineering & Tech</option>
+              <option value="Armed Forces / Police">Armed Forces & Law</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" id="searchSubmitBtn">Find Jobs</button>
+        </div>
+
+        <!-- Quick Tags -->
+        <div class="quick-tags">
+          <span class="tags-label">Popular Searches:</span>
+          <button class="tag-pill" data-query="FPSC">FPSC</button>
+          <button class="tag-pill" data-query="PPSC">PPSC</button>
+          <button class="tag-pill" data-query="NTS">NTS</button>
+          <button class="tag-pill" data-query="WAPDA">WAPDA</button>
+          <button class="tag-pill" data-query="NADRA">NADRA</button>
+          <button class="tag-pill" data-query="Bank">Banking</button>
+          <button class="tag-pill" data-query="Remote">Remote in PK</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <main class="container main-layout" id="jobs-section">
+    <!-- Sidebar Filters -->
+    <aside class="sidebar-filters">
+      <div class="filter-header">
+        <h3>Filters</h3>
+        <button id="resetFiltersBtn" class="btn-text">Reset All</button>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-heading">Job Type</label>
+        <div class="checkbox-list">
+          <label class="custom-checkbox">
+            <input type="checkbox" name="jobType" value="Full Time" checked>
+            <span>Full Time</span>
+          </label>
+          <label class="custom-checkbox">
+            <input type="checkbox" name="jobType" value="Contract / Project" checked>
+            <span>Contract / Project</span>
+          </label>
+          <label class="custom-checkbox">
+            <input type="checkbox" name="jobType" value="Part Time" checked>
+            <span>Part Time</span>
+          </label>
+          <label class="custom-checkbox">
+            <input type="checkbox" name="jobType" value="Internship" checked>
+            <span>Internship</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group" id="provinces">
+        <label class="filter-heading">Provinces & Regions</label>
+        <div class="region-buttons">
+          <button class="region-chip active" data-region="all">All PK</button>
+          <button class="region-chip" data-region="Punjab">Punjab</button>
+          <button class="region-chip" data-region="Sindh">Sindh</button>
+          <button class="region-chip" data-region="KPK">KPK</button>
+          <button class="region-chip" data-region="Balochistan">Balochistan</button>
+          <button class="region-chip" data-region="Islamabad">Islamabad</button>
+          <button class="region-chip" data-region="AJK">AJK</button>
+          <button class="region-chip" data-region="Gilgit-Baltistan">GB</button>
+        </div>
+      </div>
+
+      <div class="filter-group" id="categories">
+        <label class="filter-heading">Minimum Qualification</label>
+        <select id="qualificationFilter" class="select-full">
+          <option value="all">Any Qualification</option>
+          <option value="Matric">Matric</option>
+          <option value="Intermediate">Intermediate (FA / FSc)</option>
+          <option value="Graduation">Bachelor's / Graduation</option>
+          <option value="Master">Master's / MPhil</option>
+          <option value="PhD">PhD</option>
+        </select>
+      </div>
+
+      <!-- Quick Posting Notice -->
+      <div class="promo-box">
+        <h4>Are you hiring in Pakistan?</h4>
+        <p>Post vacancies instantly to reach applicants from across all 4 provinces and federal areas.</p>
+        <button class="btn btn-secondary-sm" id="sidePostJobBtn">Add a Job Listing</button>
+      </div>
+    </aside>
+
+    <!-- Jobs Stream -->
+    <section class="jobs-stream">
+      <div class="stream-header">
+        <div>
+          <h2 class="section-title">Latest Vacancies</h2>
+          <p class="section-subtitle" id="resultsCount">Showing verified positions</p>
+        </div>
+        <div class="sort-wrapper">
+          <label for="sortBy">Sort by:</label>
+          <select id="sortBy">
+            <option value="newest">Most Recent</option>
+            <option value="deadline">Expiring Soon</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Job List Cards Container -->
+      <div class="jobs-grid" id="jobsContainer">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-icon">📂</div>
+        <h3>No jobs found matching your criteria</h3>
+        <p>Try clearing filters or searching for general keywords like "Lahore", "Manager", or "Karachi".</p>
+        <button class="btn btn-primary" id="clearAllFiltersBtn">Reset Filters</button>
+      </div>
+
+      <!-- Load More / Pagination -->
+      <div class="pagination-wrapper" id="paginationWrapper">
+        <button class="btn btn-outline" id="loadMoreBtn">Load More Vacancies</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- News Section (Intentionally Blank as requested) -->
+  <section class="container news-container" id="news-section">
+    <div class="news-header">
+      <h2 class="section-title">News & Announcements</h2>
+      <p class="section-subtitle">Official notifications, test updates, and employment news</p>
+    </div>
+    <!-- Reserved for future news articles -->
+    <div class="blank-news-card" id="blankNewsPlaceholder">
+      <!-- Kept intentionally blank for your upcoming news feed -->
+    </div>
+  </section>
+
+  <!-- Post Job Modal -->
+  <div class="modal" id="postJobModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Post a New Vacancy</h3>
+        <button class="close-modal-btn" id="closePostModalBtn">&times;</button>
+      </div>
+      <form id="postJobForm" class="modal-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="jobTitle">Job Title *</label>
+            <input type="text" id="jobTitle" required placeholder="e.g. Assistant Director / Software Engineer">
+          </div>
+          <div class="form-group">
+            <label for="companyName">Department / Organization *</label>
+            <input type="text" id="companyName" required placeholder="e.g. NADRA, Jazz, UBL, PPSC">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="jobCity">City / Location *</label>
+            <input type="text" id="jobCity" required placeholder="e.g. Islamabad, Lahore, Peshawar">
+          </div>
+          <div class="form-group">
+            <label for="jobProvince">Province / Territory *</label>
+            <select id="jobProvince" required>
+              <option value="Islamabad">Islamabad (ICT)</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Sindh">Sindh</option>
+              <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa (KPK)</option>
+              <option value="Balochistan">Balochistan</option>
+              <option value="Azad Kashmir">Azad Kashmir</option>
+              <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="jobSector">Sector *</label>
+            <select id="jobSector" required>
+              <option value="Government">Government / Public</option>
+              <option value="Private">Private</option>
+              <option value="Banking & Finance">Banking & Finance</option>
+              <option value="IT & Software">IT & Software</option>
+              <option value="Education / Academic">Education / Teaching</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Engineering">Engineering</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="jobTypeSelect">Employment Type *</label>
+            <select id="jobTypeSelect" required>
+              <option value="Full Time">Full Time</option>
+              <option value="Contract / Project">Contract / Project</option>
+              <option value="Part Time">Part Time</option>
+              <option value="Internship">Internship</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="jobQualification">Minimum Qualification</label>
+            <select id="jobQualification">
+              <option value="Matric">Matric</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Graduation" selected>Bachelor's / Graduation</option>
+              <option value="Master">Master's / MPhil</option>
+              <option value="PhD">PhD</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="jobDeadline">Application Deadline *</label>
+            <input type="date" id="jobDeadline" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="jobDescription">Job Overview & Eligibility Requirements *</label>
+          <textarea id="jobDescription" rows="4" required placeholder="Outline key duties, required skills, quotas, and age limit..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="applyLink">Application URL or Email *</label>
+          <input type="text" id="applyLink" required placeholder="https://careers.example.com or jobs@example.com">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="cancelPostModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Publish Job</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Job Details Modal -->
+  <div class="modal" id="jobDetailModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modalJobTitle">Job Details</h3>
+        <button class="close-modal-btn" id="closeDetailModalBtn">&times;</button>
+      </div>
+      <div class="modal-body" id="modalJobContent">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="logo">
+          <span class="logo-symbol">🇵🇰</span>
+          <span class="brand-title">Rozgar<span>PK</span></span>
+        </div>
+        <p class="footer-desc">
+          Connecting Pakistani talent with employment opportunities from Karachi to Gilgit, Gwadar to Lahore. Updated round the clock.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Jobs by Province</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="quick-region-link" data-region="Punjab">Punjab Jobs</a></li>
+          <li><a href="#" class="quick-region-link" data-region="Sindh">Sindh Jobs</a></li>
+          <li><a href="#" class="quick-region-link" data-region="KPK">KPK Jobs</a></li>
+          <li><a href="#" class="quick-region-link" data-region="Balochistan">Balochistan Jobs</a></li>
+          <li><a href="#" class="quick-region-link" data-region="Islamabad">Islamabad Jobs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Popular Categories</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="quick-sector-link" data-sector="Government">Federal & Govt Jobs</a></li>
+          <li><a href="#" class="quick-sector-link" data-sector="Banking & Finance">Banking Jobs</a></li>
+          <li><a href="#" class="quick-sector-link" data-sector="IT & Software">Software & IT Jobs</a></li>
+          <li><a href="#" class="quick-sector-link" data-sector="Education / Academic">Teaching & School Jobs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>About RozgarPK</h4>
+        <p class="footer-small">RozgarPK aggregates verified daily jobs across Pakistan. All trademarks and company logos belong to their respective organizations.</p>
+        <p class="copyright">&copy; <span id="currentYear"></span> Rozgar Pakistan. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/jobs-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
